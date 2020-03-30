@@ -1,6 +1,6 @@
 # CS330-Project
 # Name: Kristen Tam
 # Student Number: 200342137
-# Topic:
+# Topic: Sockets
 # Description:
 # Instructions:
