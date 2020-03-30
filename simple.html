@@ -1,9 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+<link rel="stylesheet" type="text/css" href="simple.css" />
+<meta charset="UTF-8">
+<title>Signup Page</title>
+</head>
 <body>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+<h1> Welcome to my signup page!</h1>
+<br />
+
+<p> <i>Please enter your first and last name </i> </p>
+<form id="SignUp" onsubmit ="return SignUpForm()" method="post">
+<table>
+	<tr><td>First name: <br> </td><td><input type="text" name="firstname" size="30" /></td></tr>
+	<tr><td>Last name: <br> </td><td><input type="text" name="lastname" size="30" /></td></tr>
+</table>
+
+<p><input type="submit" name="SignUp" value="SignUp" />
+<input type="reset" name="Reset" value="Reset" /></p>
+</form> <br />
+  
+
+
+<a href = "index.html">Back to my index page</a><br />
+<a href ="https://validator.w3.org/nu/?doc=http%3A%2F%2Fwww2.cs.uregina.ca%2F%7Etam209%2Fsignup.html"> Page validator</a>
 
 </body>
 </html>
