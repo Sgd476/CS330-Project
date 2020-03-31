@@ -1,3 +1,15 @@
+/* code from CS 330 lab on sockets is being reused and modified */
+/* below is the description of the original code */
+/*****************************************************************
+ Sockets Daemon Program
+
+  This code was modified from Nigel Horspools, "The Berkeley
+  Unix Environment".
+
+  A daemon process is started on some host.  A socket is acquired
+  for use, and it's number is displayed on the screen.  For clients
+  to connect to the server, they muse use this socket number.
+*****************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +43,8 @@ int main()
   int sfd;                /* socket descriptor returned from accept() */
   char ch[MAXLINE];       /* character for i/o */
   FILE *sf;               /* various file descriptors */
-  int num_char=MAXLINE;
+  int lf;
+  int num_char = MAXLINE;
   pid_t fork_return;
   
   /*
@@ -79,16 +92,39 @@ int main()
   if(listen(s,1) != 0)
     OOPS("listen");
   
+  /* Loop indefinately and wait for events. */
   for(;;)
   {
-    if (sfd = accept(s, NULL, NULL) == -1)
+    /* Wait in the 'accept()' call for a client to make a connection. */
+    sfd = accept(s, NULL, NULL);
+    if (sfd == -1)
     {
       OOPS("accept");
     }
+    /* else client connection is made and will send a list of options the client 
+    can select from */
+    
+    lf = open(LIST_FILE, O_RDONLY);
+    if (lf == -1)
+    {
+      write(sfd, "No options.\n", strlen("No options.\n"));
+    }
+    /* Read from file, write to socket */
     else
     {
-      
+      while ((num_char = read(lf, ch, MAXLINE)) > 0) 
+      {
+        if (write(sfd, ch, num_char) < num_char)
+        {
+          OOPS("Writing");
+        }
+      }
+      close(lf);
     }
+    close(sfd);
   }
+    
+  return 0;
+}
  
   
