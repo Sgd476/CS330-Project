@@ -1,4 +1,4 @@
-/* code from CS 330 lab on sockets is being reused and modified */
+/* This code is from CS 330 lab on sockets. This code is being reused, modified, and built upon */
 /* below is the description of the original code */
 /*****************************************************************
  Sockets Daemon Program
@@ -32,6 +32,55 @@
 #define OOPS(msg)       {perror(msg); exit(1);}
 
 #define MAXLINE 1024
+
+int clientCount = 0;
+
+static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+static pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+
+struct client{
+
+  int index;
+  int sockID;
+  struct sockaddr_in clientAddr;
+  int len;
+
+};
+
+struct client Client[1024];
+pthread_t thread[1024];
+
+void * sendInfo(void * ClientDetail)
+{
+  int lf;
+  int num_char = MAXLINE;
+  char ch[MAXLINE];
+
+  struct client* clientDetail = (struct client*) ClientDetail;
+  int index = clientDetail -> index;
+  int clientSocket = clientDetail -> sockID;
+
+  printf("Client %d connected.\n",index + 1);
+
+  lf = open(LIST_FILE, O_RDONLY);
+  if (lf == -1)
+  {
+    write(clientSocket, "No options.\n", strlen("No options.\n"));
+  }
+  /* Read from file, write to socket */
+  else
+  {
+    while ((num_char = read(lf, ch, MAXLINE)) > 0) 
+    {
+      if (write(clientSocket, ch, num_char) < num_char)
+      {
+        OOPS("Writing");
+      }
+    }
+    close(lf);
+  }
+  close(clientSocket);
+}
 
 int main()
 {
@@ -96,32 +145,24 @@ int main()
   for(;;)
   {
     /* Wait in the 'accept()' call for a client to make a connection. */
-    sfd = accept(s, NULL, NULL);
-    if (sfd == -1)
+    Client[clientCount].sockID = accept(s, (struct sockaddr*) &Client[clientCount].clientAddr, &Client[clientCount].len);
+    if (Client[clientCount].sockID == -1)
     {
       OOPS("accept");
     }
-    /* else client connection is made and will send a list of options the client 
-    can select from */
     
-    lf = open(LIST_FILE, O_RDONLY);
-    if (lf == -1)
-    {
-      write(sfd, "No options.\n", strlen("No options.\n"));
-    }
-    /* Read from file, write to socket */
-    else
-    {
-      while ((num_char = read(lf, ch, MAXLINE)) > 0) 
-      {
-        if (write(sfd, ch, num_char) < num_char)
-        {
-          OOPS("Writing");
-        }
-      }
-      close(lf);
-    }
-    close(sfd);
+    Client[clientCount].index = clientCount;
+
+    pthread_create(&thread[clientCount], NULL, sendInfo, (void *) &Client[clientCount]);
+    
+    clientCount++;
+  }
+
+  int i = 0;
+  while (i < clientCount)
+  {
+    pthread_join(thread[i], NULL);
+    i++;
   }
     
   return 0;
