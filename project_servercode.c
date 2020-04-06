@@ -28,6 +28,9 @@
 #define PORTNUM         0
 
 #define LIST_FILE       "./list.bbs.file" //This file contains the options for the user to pick from
+#define HTML_FILE       "simple.html"
+#define CSS_FILE        "simple.css"
+#define JS_FILE         "simple.js"
 
 /* Display error message on stderr and then exit. */
 #define OOPS(msg)       {perror(msg); exit(1);}
@@ -46,9 +49,8 @@ int main()
   int sfd;                /* socket descriptor returned from accept() */
   char ch[MAXLINE];       /* character for i/o */
   FILE *sf;               /* various file descriptors */
-  int lf;
+  int lf;                 /* file descriptor for list file */
   int num_char = MAXLINE;
-  pid_t fork_return;
   
   /*
   * Build up our network address. Notice how it is made of machine name + port.
@@ -128,9 +130,81 @@ int main()
     read(sfd, ch, sizeof(ch));
 
 
+//if user chooses option 1, open HTML file, write HTML file to socket
     if (strncmp("1", ch, 1) == 0)
     {
-      printf("This is option 1\n");
+      bzero(ch, sizeof(ch));
+      int htmlf;       /* file descriptor for html file */
+
+      htmlf = open(HTML_FILE, O_RDONLY);
+      if (htmlf == -1)
+      {
+        write(sfd, "No HTML file.\n", strlen("No HTML file.\n"));
+      }
+
+      printf("Sending HTML file...\n");
+
+      while ((num_char = read(htmlf, ch, MAXLINE)) > 0) 
+      {
+        if (write(sfd, ch, num_char) < num_char)
+        {
+          OOPS("Writing");
+        }
+      }
+      close(htmlf);
+
+      break;
+    }
+
+    //if user chooses option 2, open CSS file, write CSS file to socket
+    if (strncmp("1", ch, 1) == 0)
+    {
+      bzero(ch, sizeof(ch));
+      int cssf;       /* file descriptor for css file */
+
+      cssf = open(CSS_FILE, O_RDONLY);
+      if (htmlf == -1)
+      {
+        write(sfd, "No CSS file.\n", strlen("No CSS file.\n"));
+      }
+
+      printf("Sending CSS file...\n");
+
+      while ((num_char = read(cssf, ch, MAXLINE)) > 0) 
+      {
+        if (write(sfd, ch, num_char) < num_char)
+        {
+          OOPS("Writing");
+        }
+      }
+      close(cssf);
+
+      break;
+    }
+
+    //if user chooses option 3, open JS file, write JS file to socket
+    if (strncmp("1", ch, 1) == 0)
+    {
+      bzero(ch, sizeof(ch));
+      int jsf;       /* file descriptor for js file */
+
+      jsf = open(JS_FILE, O_RDONLY);
+      if (htmlf == -1)
+      {
+        write(sfd, "No JS file.\n", strlen("No JS file.\n"));
+      }
+
+      printf("Sending JS file...\n");
+
+      while ((num_char = read(jsf, ch, MAXLINE)) > 0) 
+      {
+        if (write(sfd, ch, num_char) < num_char)
+        {
+          OOPS("Writing");
+        }
+      }
+      close(jsf);
+
       break;
     }
 
