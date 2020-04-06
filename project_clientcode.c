@@ -82,8 +82,8 @@ int main(int argc, char *argv[])
 
     /*write to socket */
     write(s, ch, sizeof(ch));
-    //bzero(ch, MAXLINE);
 
+    //if user chooses option 1
     if(strncmp("1", ch, 1) == 0)
     {
       printf("This is option 1\n");
