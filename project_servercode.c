@@ -157,7 +157,7 @@ int main()
     }
 
     //if user chooses option 2, open CSS file, write CSS file to socket
-    if (strncmp("1", ch, 1) == 0)
+    if (strncmp("2", ch, 1) == 0)
     {
       bzero(ch, sizeof(ch));
       int cssf;       /* file descriptor for css file */
@@ -183,7 +183,7 @@ int main()
     }
 
     //if user chooses option 3, open JS file, write JS file to socket
-    if (strncmp("1", ch, 1) == 0)
+    if (strncmp("3", ch, 1) == 0)
     {
       bzero(ch, sizeof(ch));
       int jsf;       /* file descriptor for js file */
