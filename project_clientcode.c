@@ -1,5 +1,3 @@
-/* This code is from CS 330 lab on sockets. This code is being used, modified, and built upon */
-/* Below is the original description of the original code */
 /*****************************************************************
   Sockets Client Program 
 
@@ -71,11 +69,32 @@ int main(int argc, char *argv[])
   if(connect(s,(struct sockaddr *)&bba,sizeof(bba)) != 0)
     OOPS("connect");
 
-  /* read from the socket, write to the screen */
-  while( (num_char=read(s,ch,MAXLINE)) > 0 )
-    if ( write(1,ch,num_char) < num_char)
-      OOPS("writing");
-    close(s);
+  for(;;)
+  {
+    int n = 0;
+  /* Read from socket, write to stdout */
+    read(s, ch, sizeof(ch));
+    printf("%s", ch);
+    printf("Enter : ");
+
+    while((ch[n++] = getchar()) != '\n')
+      ;
+
+    /*write to socket */
+    write(s, ch, sizeof(ch));
+    //bzero(ch, MAXLINE);
+
+    if(strncmp("1", ch, 1) == 0)
+    {
+      printf("This is option 1\n");
+      break;
+    }
+    
+  }
+
+
+  close(s);
+
 
   return 0;
 }
