@@ -16,6 +16,8 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <sys/stat.h>   //needed for open
+#include <fcntl.h>      //needed for open
 
 /* Display error message on stderr and then exit. */
 #define OOPS(msg)       {perror(msg); exit(1);}
@@ -72,7 +74,7 @@ int main(int argc, char *argv[])
   for(;;)
   {
     int n = 0;
-  /* Read from socket, write to stdout */
+    /* Read from socket */
     read(s, ch, sizeof(ch));
     printf("%s", ch);
     printf("Enter : ");
@@ -83,12 +85,90 @@ int main(int argc, char *argv[])
     /*write to socket */
     write(s, ch, sizeof(ch));
 
-    //if user chooses option 1
+    //if user chooses option 1, open a new html file and write contents from socket into new html file
     if(strncmp("1", ch, 1) == 0)
     {
-      printf("This is option 1\n");
+      int htmlf;          /*file descriptor for HTML file */
+
+      //open newsimple.html file
+      htmlf = open("newsimple.html", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+      if (htmlf == -1)
+      {
+        perror(NULL);
+        exit(1);
+      }
+
+      printf("Receiving HTML file... \n");
+
+      //write to newsimple.html file
+      while((num_char = read(s, ch, MAXLINE)) > 0)
+      {
+        if (write(htmlf, ch, num_char) < num_char)
+        {
+            OOPS("writing");
+        }
+      }
+
+      close(htmlf);
       break;
     }
+
+    //if user chooses option 2, open a new css file and write contents from socket into new css file
+    if(strncmp("2", ch, 1) == 0)
+    {
+      int cssf;          /*file descriptor for CSS file */
+
+      //open newsimple.html file
+      cssf = open("newsimple.css", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+      if (cssf == -1)
+      {
+        perror(NULL);
+        exit(1);
+      }
+
+      printf("Receiving CSS file... \n");
+
+      //write to newsimple.html file
+      while((num_char = read(s, ch, MAXLINE)) > 0)
+      {
+        if (write(cssf, ch, num_char) < num_char)
+        {
+            OOPS("writing");
+        }
+      }
+
+      close(cssf);
+      break;
+    }
+
+    //if user chooses option 3
+    if(strncmp("3", ch, 1) == 0)
+    {
+      int jsf;          /*file descriptor for JS file */
+
+      //open newsimple.html file
+      jsf = open("newsimple.js", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+      if (jsf == -1)
+      {
+        perror(NULL);
+        exit(1);
+      }
+
+      printf("Receiving JS file... \n");
+
+      //write to newsimple.html file
+      while((num_char = read(s, ch, MAXLINE)) > 0)
+      {
+        if (write(jsf, ch, num_char) < num_char)
+        {
+            OOPS("writing");
+        }
+      }
+
+      close(jsf);
+      break;
+    }
+
     
   }
 
