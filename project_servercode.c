@@ -27,7 +27,7 @@
  * port number. */
 #define PORTNUM         0
 
-#define LIST_FILE       "./list.bbs.file"
+#define LIST_FILE       "./list.bbs.file" //This file contains the options for the user to pick from
 
 /* Display error message on stderr and then exit. */
 #define OOPS(msg)       {perror(msg); exit(1);}
