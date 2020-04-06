@@ -130,7 +130,7 @@ int main()
     read(sfd, ch, sizeof(ch));
 
 
-//if user chooses option 1, open HTML file, write HTML file to socket
+    //if user enters "1", open HTML file, write HTML file to socket
     if (strncmp("1", ch, 1) == 0)
     {
       bzero(ch, sizeof(ch));
@@ -152,12 +152,11 @@ int main()
         }
       }
       close(htmlf);
-
       break;
     }
 
-    //if user chooses option 2, open CSS file, write CSS file to socket
-    if (strncmp("2", ch, 1) == 0)
+    //else if user enters "2", open CSS file, write CSS file to socket
+    else if (strncmp("2", ch, 1) == 0)
     {
       bzero(ch, sizeof(ch));
       int cssf;       /* file descriptor for css file */
@@ -178,12 +177,11 @@ int main()
         }
       }
       close(cssf);
-
       break;
     }
 
-    //if user chooses option 3, open JS file, write JS file to socket
-    if (strncmp("3", ch, 1) == 0)
+    //else if user enters "3", open JS file, write JS file to socket
+    else if (strncmp("3", ch, 1) == 0)
     {
       bzero(ch, sizeof(ch));
       int jsf;       /* file descriptor for js file */
@@ -204,8 +202,19 @@ int main()
         }
       }
       close(jsf);
-
       break;
+    }
+   
+    //else if user enters "exit", client has closed the session
+    else if (strncmp("exit", ch, 4) == 0)
+    {
+    	 printf("Client has exited the session....\n");
+    	 break;
+    }
+    //If user enters an invalid response. Nothing happens to server
+    else
+    {
+      printf("\n");
     }
 
   }
