@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     /*write to socket */
     write(s, ch, sizeof(ch));
 
-    //if user chooses option 1, open a new html file and write contents from socket into new html file
+    //if user enters "1", open a new html file and write contents from socket into new html file
     if(strncmp("1", ch, 1) == 0)
     {
       int htmlf;          /*file descriptor for HTML file */
@@ -113,8 +113,8 @@ int main(int argc, char *argv[])
       break;
     }
 
-    //if user chooses option 2, open a new css file and write contents from socket into new css file
-    if(strncmp("2", ch, 1) == 0)
+    //else if user enters "2", open a new css file and write contents from socket into new css file
+    else if(strncmp("2", ch, 1) == 0)
     {
       int cssf;          /*file descriptor for CSS file */
 
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
       break;
     }
 
-    //if user chooses option 3
+    //if user enters "3", open a new js file and write contents from socket into new js file 
     if(strncmp("3", ch, 1) == 0)
     {
       int jsf;          /*file descriptor for JS file */
@@ -168,8 +168,21 @@ int main(int argc, char *argv[])
       close(jsf);
       break;
     }
-
     
+    //else if user enters "exit", client has closed session and program will end
+    else if (strncmp("exit", ch, 4) == 0)
+    {
+      printf("Client exit...\n");
+    	break;
+    }
+
+    //else user has entered an invalid option
+    else
+    {
+    	printf("Invalid option.\n");
+    	printf("\n");
+    }
+      
   }
 
 
