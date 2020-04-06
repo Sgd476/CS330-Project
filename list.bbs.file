@@ -1,6 +1,8 @@
-Press the corresponding number for
+Type the corresponding text for
 the option you would like.
 Options:
-1: Receive HTML file
-2: Receive
-3: Receive
+Enter "1" : Receive HTML file
+Enter "2" : Receive CSS file
+Enter "3" : Receive JS file
+Enter "chat" if you would like to chat with other client machines
+Enter "exit" if you would like to exit
