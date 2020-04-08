@@ -10,12 +10,13 @@ Challenges:
 <br/>
 # Instructions:
 1. Click on the "clone or download" button on github and download the ZIP file to your computer <br/>
-2. Open a terminal and log onto Hercules <br/>
-3. Log onto a Linux machine using: <br/>
-- cs_clients CL115 <br/>
-- ssh a0498## <br/>
-4. Make a directory to store the project files in <br/>
-- ex. mkdir cs330project <br/>
+2. Open a terminal and log onto Hercules 
+3. Log onto a Linux machine using: 
+- cs_clients CL115 
+- ssh a0498## 
+4. Make a directory to store the project files in and change into that directory<br/>
+- ex. mkdir cs330project 
+- ex. cd cs330 project 
 5. Copy 6 files that you got from github into your directory made in step 4 (do NOT need the README file) <br/>
 Files that should be copied into directory: 
 - list.bbs.file
