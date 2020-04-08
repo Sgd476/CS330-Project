@@ -3,8 +3,8 @@
 # Student Number: 200342137
 # Topic: Sockets
 Description:
-This project is on sockets. The code for the server also includes threads. The server code keeps track of how many clients are connected to it. The threading allows multiple clients to be connected all at the same time. 
-\n Once a client is connected, the server will send a file to the client over the socket and the contents of the file will be shown on the client's terminal. The file contains a list of options for the user to choose from. The client terminal will prompt the user. If the user chooses either option 1 (HTML file), 2(CSS file), or 3(JS file), a file will be written to the socket on the server side and read on the client side. The client will write the file into a new file saved to the current directory. The client will then open the file on a default browser. After the client has opened it on the browser, the client process will end. 
+This project is on sockets. The code for the server also includes threads. The server code keeps track of how many clients are connected to it. The threading allows multiple clients to be connected all at the same time. <br/>
+Once a client is connected, the server will send a file to the client over the socket and the contents of the file will be shown on the client's terminal. The file contains a list of options for the user to choose from. The client terminal will prompt the user. If the user chooses either option 1 (HTML file), 2(CSS file), or 3(JS file), a file will be written to the socket on the server side and read on the client side. The client will write the file into a new file saved to the current directory. The client will then open the file on a default browser. After the client has opened it on the browser, the client process will end. 
 The other options given are "chat" and "exit". If a user chooses "chat", then this should allow the user to chat with other clients connected to the server. If a user chooses "exit", this will close the client side.
 Challenges:
 # Instructions:
