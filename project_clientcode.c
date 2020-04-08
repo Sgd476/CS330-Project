@@ -169,6 +169,26 @@ int main(int argc, char *argv[])
       break;
     }
     
+    if (strncmp("chat", ch, 4) == 0)
+    {
+    	for (;;)
+    	{
+    		printf("Client: ");
+    		bzero(ch, sizeof(ch));
+    		write(s, ch, MAXLINE);
+
+    		bzero(ch, sizeof(ch));
+    		read(s, ch, MAXLINE);
+
+    		if (strncmp("logout", ch, 6) == 0)
+    		{
+    			printf("Client logout...\n");
+    			break;
+    		}
+
+    	}
+    }
+    
     //else if user enters "exit", client has closed session and program will end
     else if (strncmp("exit", ch, 4) == 0)
     {
