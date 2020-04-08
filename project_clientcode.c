@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
         exit(1);
       }
 
-      printf("Receiving HTML file... \n");
+      printf("Receiving HTML file... \nSaving as newsimple.html to current directory...\n");
 
       //write to newsimple.html file
       while((num_char = read(s, ch, MAXLINE)) > 0)
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
         exit(1);
       }
 
-      printf("Receiving CSS file... \n");
+      printf("Receiving CSS file... \nSaving as newsimple.css to current directory...\n");
 
       //write to newsimple.html file
       while((num_char = read(s, ch, MAXLINE)) > 0)
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
         exit(1);
       }
 
-      printf("Receiving JS file... \n");
+      printf("Receiving JS file... \nSaving as newsimple.js to current directory...\n");
 
       //write to newsimple.html file
       while((num_char = read(s, ch, MAXLINE)) > 0)
