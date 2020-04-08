@@ -9,27 +9,27 @@ The other options given are "chat" and "exit". If a user chooses "chat", then th
 Challenges:
 <br/>
 # Instructions:
-Step 1. Click on the "clone or download" button on github and download the ZIP file to your computer <br/>
-Step 2. Open a terminal and log onto Hercules <br/>
-Step 3. Log onto a Linux machine using: <br/>
+1. Click on the "clone or download" button on github and download the ZIP file to your computer <br/>
+2. Open a terminal and log onto Hercules <br/>
+3. Log onto a Linux machine using: <br/>
 - cs_clients CL115 <br/>
 - ssh a0498## <br/>
-Step 4. Make a directory to store the project files in <br/>
+4. Make a directory to store the project files in <br/>
 - ex. mkdir cs330project <br/>
-Step 5. Copy 6 files that you got from github into your directory made in step 4 (do NOT need the README file) <br/>
-Files that should be copied into directory: <br/>
+5. Copy 6 files that you got from github into your directory made in step 4 (do NOT need the README file) <br/>
+Files that should be copied into directory: 
 - list.bbs.file
 - simple.css
 - simple.html
 - simple.js
 - project_servercode.c
 - project_clientcode.c <br/>
-Step 6. Compile the code using the following commands: <br/>
+6. Compile the code using the following commands: <br/>
 - gcc project_servercode.c -o server -pthread 
 - gcc project_clientcode.c -o client <br/>
-Step 7. Open 3 more terminals and log all of them onto Hercules <br/>
-Step 8. With the other 3 terminals log onto the same Linux machine used in step 3 and go into the directory made in step 4 <br/>
-Step 9. In one terminal execute the server: <br/>
+7. Open 3 more terminals and log all of them onto Hercules <br/>
+8. With the other 3 terminals log onto the same Linux machine used in step 3 and go into the directory made in step 4 <br/>
+9. In one terminal execute the server: <br/>
 ./server <br/>
 - The server will give a port number for the client to enter <br/>
 Step 10. In the other 3 terminals execute the client: <br/>
@@ -41,7 +41,6 @@ This will show on the server that there are 3 clients connected to it. <br/>
 - Have client 3 select option 3
 - When selecting these options it will close the client program
 - Then close the server by pressing control c into the terminal running the server program
-<br/>
 Rerun the all the code again with 1 terminal running the server and the 3 other terminals running the client.
 <br/>
 For the "chat" to work, all client terminals need to enter "chat" in the prompt. Then the user may type anything on the client terminal
