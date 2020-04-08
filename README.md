@@ -32,7 +32,7 @@ Files that should be copied into directory:
 9. In one terminal execute the server: <br/>
 ./server <br/>
 - The server will give a port number for the client to enter <br/>
-Step 10. In the other 3 terminals execute the client: <br/>
+10. In the other 3 terminals execute the client: <br/>
 ./client <br/>
 To test the multiple clients on the server, execute the client on the 3 servers. Enter the hostname, which is the number of the Linux machine you are using (ex. a0498##) and then enter the port number given by the server. <br/>
 This will show on the server that there are 3 clients connected to it. <br/>
@@ -41,6 +41,7 @@ This will show on the server that there are 3 clients connected to it. <br/>
 - Have client 3 select option 3
 - When selecting these options it will close the client program
 - Then close the server by pressing control c into the terminal running the server program
+FOR CHAT OPTION: <br/>
 Rerun the all the code again with 1 terminal running the server and the 3 other terminals running the client.
 <br/>
 For the "chat" to work, all client terminals need to enter "chat" in the prompt. Then the user may type anything on the client terminal
