@@ -9,12 +9,12 @@ The other options given are "chat" and "exit". If a user chooses "chat", then th
 Challenges:
 <br/>
 # Instructions:
-1. Click on the "clone or download" button on github and download the ZIP file to your computer <br/>
+1. Click on the "clone or download" button on github and download the ZIP file to your computer 
 2. Open a terminal and log onto Hercules 
 3. Log onto a Linux machine using: 
 - cs_clients CL115 
 - ssh a0498## 
-4. Make a directory to store the project files in and change into that directory<br/>
+4. Make a directory to store the project files in and change into that directory
 - ex. mkdir cs330project 
 - ex. cd cs330 project 
 5. Copy 6 files that you got from github into your directory made in step 4 (do NOT need the README file) <br/>
@@ -24,19 +24,19 @@ Files that should be copied into directory:
 - simple.html
 - simple.js
 - project_servercode.c
-- project_clientcode.c <br/>
-6. Compile the code using the following commands: <br/>
+- project_clientcode.c 
+6. Compile the code using the following commands: 
 - gcc project_servercode.c -o server -pthread 
-- gcc project_clientcode.c -o client <br/>
-7. Open 3 more terminals and log all of them onto Hercules <br/>
-8. With the other 3 terminals log onto the same Linux machine used in step 3 and go into the directory made in step 4 <br/>
+- gcc project_clientcode.c -o client 
+7. Open 3 more terminals and log all of them onto Hercules 
+8. With the other 3 terminals log onto the same Linux machine used in step 3 and go into the directory made in step 4 
 9. In one terminal execute the server: <br/>
 ./server <br/>
-- The server will give a port number for the client to enter <br/>
+- The server will give a port number for the client to enter 
 10. In the other 3 terminals execute the client: <br/>
 ./client <br/>
 To test the multiple clients on the server, execute the client on the 3 other terminals. Enter the hostname, which is the number of the Linux machine you are using (ex. a0498##) and then enter the port number given by the server. <br/>
-This will show on the server terminal that there are 3 clients connected to it. <br/>
+This will show on the server terminal that there are 3 clients connected to it. 
 - Have client 1 select option 1 
 - Have client 2 select option 2
 - Have client 3 select option 3
