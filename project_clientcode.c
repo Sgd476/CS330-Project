@@ -108,6 +108,13 @@ int main(int argc, char *argv[])
             OOPS("writing");
         }
       }
+      char mode[] = "0644";
+	    char buf[100] = "./newsimple.html";
+	    int i;
+	    i = strtol(mode, 0, 8);
+	    chmod(buf, i);
+
+	    system("xdg-open ./newsimple.html");
 
       close(htmlf);
       break;
