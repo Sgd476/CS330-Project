@@ -118,8 +118,8 @@ int main(int argc, char *argv[])
       break;
     }
 
-    //else if user enters "2", open a new css file and write contents from socket into new css file
-    else if(strncmp("2", ch, 1) == 0)
+    //if user enters "2", open a new css file and write contents from socket into new css file
+    if(strncmp("2", ch, 1) == 0)
     {
       int cssf;          /*file descriptor for CSS file */
 
@@ -174,38 +174,11 @@ int main(int argc, char *argv[])
       break;
     }
     
-    if (strncmp("chat", ch, 4) == 0)
-    {
-    	for (;;)
-    	{
-    		printf("Client: ");
-    		bzero(ch, sizeof(ch));
-    		write(s, ch, MAXLINE);
-         
-         bzero(ch,sizeof(ch));
-         read(s, ch, MAXLINE);
-
-    		if (strncmp("logout", ch, 6) == 0)
-    		{
-    			printf("Client logout...\n");
-    			break;
-    		}
-
-    	}
-    }
-    
-    //else if user enters "exit", client has closed session and program will end
-    else if (strncmp("exit", ch, 4) == 0)
+    //if user enters "exit", client has closed session and program will end
+    if (strncmp("exit", ch, 4) == 0)
     {
       printf("Client exit...\n");
     	break;
-    }
-
-    //else user has entered an invalid option
-    else
-    {
-    	printf("Invalid option.\n");
-    	printf("\n");
     }
       
   }
