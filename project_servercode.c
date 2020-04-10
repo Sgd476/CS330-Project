@@ -203,10 +203,8 @@ int main()
   socklen_t slen;         /* length socket address */
   int s;                  /* socket return value */
   int sfd;                /* socket descriptor returned from accept() */
-  char ch[MAXLINE];       /* character for i/o */
   FILE *sf;               /* various file descriptors */
-  int lf;                 /* file descriptor for list file */
-  int num_char = MAXLINE;
+   
   
   /*
   * Build up our network address. Notice how it is made of machine name + port.
@@ -252,14 +250,7 @@ int main()
   /* Tell socket to wait for input.  Queue length is 5. */
   if(listen(s,5) != 0)
     OOPS("listen");
-
-
-  /* accept */
-  sfd = accept(s, NULL, NULL);
-  if (sfd == -1)
-    OOPS("accept");
   
-
 /* 
 Title: Multiple Client Chat Description
 Author: Abhey Rana
@@ -288,9 +279,7 @@ https://gist.github.com/Abhey/47e09377a527acfc2480dbc5515df872
     pthread_join(thread[i], NULL);
     i++;
   }
-
-
-    
+   
   return 0;
 }
  
