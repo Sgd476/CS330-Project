@@ -269,7 +269,7 @@ https://gist.github.com/Abhey/47e09377a527acfc2480dbc5515df872
   for(;;)
     {
     /* Wait in the 'accept()' call for a client to make a connection. */
-    Client[clientCount].sockID = accept(s, (struct sockaddr*) &Client[clientCount].clientAddr, &Client[clientCount].len);
+    Client[clientCount].sockID = accept(s, (struct sockaddr*) &Client[clientCount].clientAddr, &Client[clientCount].length);
     if (Client[clientCount].sockID == -1)
     {
       OOPS("accept");
