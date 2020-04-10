@@ -178,29 +178,6 @@ void *sendInfo(void * client_detail)
       break;
     }
 
-    //else if user enters "chat"
-    else if (strncmp("chat", ch, 4) == 0)
-    {
-      for (;;)
-      {
-        //erase the data in ch
-        bzero(ch, sizeof(ch));
-
-        //read from client socket
-        read(clientSocket, ch, sizeof(ch));
-
-        //write to all other clients
-        int i = 1;
-        while (i < clientCount)
-        {
-          if (i != index)
-          {
-            write(Client[i].sockID, ch, sizeof(ch));
-          }
-        }
-      }
-    }
-
     //else if user enters "exit", client has closed the session
     else if (strncmp("exit", ch, 4) == 0)
     {
