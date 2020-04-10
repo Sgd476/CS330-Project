@@ -1,3 +1,11 @@
+/* code from CS 330 lab on sockets is being reused and modified - most of the socket setup code is 
+   from the CS 330 lab code used in the exercise
+*/
+/* below is the description of the original code */
+/* code on threading is credit to https://gist.github.com/Abhey/47e09377a527acfc2480dbc5515df872
+   Abhey Rana, Multiple Client Chat Description [Source Code]
+*/
+
 /*****************************************************************
   Sockets Client Program 
 
@@ -16,6 +24,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <pthread.h>
 #include <sys/stat.h>   //needed for open
 #include <fcntl.h>      //needed for open
 
@@ -23,6 +32,27 @@
 #define OOPS(msg)       {perror(msg); exit(1);}
 
 #define MAXLINE 512
+
+/* 
+Title: Multiple Client Chat Description
+Author: Abhey Rana
+https://gist.github.com/Abhey/47e09377a527acfc2480dbc5515df872
+*/
+void * doReceiving(void * sockID){
+
+  int clientSocket = *((int *) sockID);
+
+  while(1){
+
+    char data[1024];
+    int read = recv(clientSocket,data,1024,0);
+    data[read] = '\0';
+    printf("%s\n",data);
+
+  }
+
+}
+/* END */
 
 int main(int argc, char *argv[])
 {
@@ -70,6 +100,15 @@ int main(int argc, char *argv[])
     OOPS("socket");
   if(connect(s,(struct sockaddr *)&bba,sizeof(bba)) != 0)
     OOPS("connect");
+  
+/* 
+Title: Multiple Client Chat Description
+Author: Abhey Rana
+https://gist.github.com/Abhey/47e09377a527acfc2480dbc5515df872
+*/
+  pthread_t thread;
+  pthread_create(&thread, NULL, doReceiving, (void *) &s);
+/* END */
 
   for(;;)
   {
@@ -176,9 +215,6 @@ int main(int argc, char *argv[])
     		printf("Client: ");
     		bzero(ch, sizeof(ch));
     		write(s, ch, MAXLINE);
-
-    		bzero(ch, sizeof(ch));
-    		read(s, ch, MAXLINE);
 
     		if (strncmp("logout", ch, 6) == 0)
     		{
