@@ -126,8 +126,8 @@ void *sendInfo(void * client_detail)
       break;
     }
 
-    //else if user enters "2", open CSS file, write CSS file to socket
-    else if (strncmp("2", ch, 1) == 0)
+    //if user enters "2", open CSS file, write CSS file to socket
+    if (strncmp("2", ch, 1) == 0)
     {
       //erase the data in ch
       bzero(ch, sizeof(ch));
@@ -152,8 +152,8 @@ void *sendInfo(void * client_detail)
       break;
     }
 
-    //else if user enters "3", open JS file, write JS file to socket
-    else if (strncmp("3", ch, 1) == 0)
+    //if user enters "3", open JS file, write JS file to socket
+    if (strncmp("3", ch, 1) == 0)
     {
       //erase the data in ch
       bzero(ch, sizeof(ch));
@@ -178,17 +178,11 @@ void *sendInfo(void * client_detail)
       break;
     }
 
-    //else if user enters "exit", client has closed the session
-    else if (strncmp("exit", ch, 4) == 0)
+    //if user enters "exit", client has closed the session
+    if (strncmp("exit", ch, 4) == 0)
     {
       printf("Client %d has exited the session....\n", index + 1);
       break;
-    }
-
-    //If user enters an invalid response. Nothing happens to server
-    else
-    {
-      printf("\n");
     }
 
   }
