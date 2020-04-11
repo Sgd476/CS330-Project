@@ -7,6 +7,8 @@ This project is on sockets. The code for the server also includes threads. The s
 Once a client is connected, the server will send a file to the client over the socket and the contents of the file will be shown on the client's terminal. The file contains a list of options for the user to choose from. The client terminal will prompt the user. If the user chooses either option 1 (HTML file), 2(CSS file), or 3(JS file), a file will be written to the socket on the server side and read on the client side. The client will write the file into a new file saved to the current directory. After the client has saved the program as a new file, the client process will end. <br/>
 The other option given is "exit". If a user chooses "exit", this will close the client side. <br/>
 Challenges:
+I originally planned to make a chatroom option that went along with my program but I could not make it work. I tried using the fork option in the thread but it did not work. I also tried added threads to the client code but that didn not seem to work either. In the end I decided to take that option out. I also planned for the client program to be able to run the html, css, and js files on the default browser but I struggled trying to finding a way to do that. Decided to take that out also to have a functioning program that worked. 
+Another challenge I had was trying to loop the client code but that did not work and I am not sure of why. Also when you run the server and then run the client code it reads the list options twice on the client and I also didn't know how to fix this.
 <br/>
 # Instructions:
 1. Click on the "clone or download" button on github and download the ZIP file to your computer 
